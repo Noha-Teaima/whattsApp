@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:task1/data.dart';
 import 'package:task1/BMI.dart';
+import 'package:task1/ecomerce/AnotherSignUp.dart';
+import 'package:task1/ecomerce/BookingHistory.dart';
+import 'package:task1/ecomerce/signUp.dart';
 import 'package:task1/splash.dart';
 
 void main() {
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: splashScreen(),
+      home: BookingHistory(),
     );
   }
 }
