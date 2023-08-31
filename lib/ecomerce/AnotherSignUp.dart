@@ -18,7 +18,7 @@ class _AnotherSignUpState extends State<AnotherSignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 68, 0),
+      backgroundColor: const Color.fromARGB(255, 19, 84, 174),
       body: Column(
         children: [
           Center(

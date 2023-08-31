@@ -40,15 +40,27 @@ class _BookingHistoryState extends State<BookingHistory> {
           SizedBox(
             height: 20,
           ),
-          ListTileWidget(),
+          ListTileWidget(
+            img: "lib/images/img1.jfif",
+            title: " Ambrosia Hotel & Restaurant",
+            subtitle: "kazi Deiry, Taiger Pass\n Chittagong",
+          ),
           SizedBox(
             height: 20,
           ),
-          ListTileWidget(),
+          ListTileWidget(
+            img: "lib/images/img2.jfif",
+            title: " Tava restaurant",
+            subtitle: " zaki hossai,  Pass\n Chittagong",
+          ),
           SizedBox(
             height: 20,
           ),
-          ListTileWidget(),
+          ListTileWidget(
+            img: "lib/images/img3.jfif",
+            title: " Haatkhola",
+            subtitle: "kazi Deiry,  Pass\n Chittagong",
+          ),
           SizedBox(
             height: 20,
           ),
@@ -58,11 +70,13 @@ class _BookingHistoryState extends State<BookingHistory> {
               icon: Icon(Icons.add),
               label: Text(
                 "Booking More",
-                style: TextStyle(fontSize: 15, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.grey,
+                ),
               ),
               style: TextButton.styleFrom(
-                iconColor: Colors.grey,
-              ),
+                  iconColor: Colors.grey, foregroundColor: Colors.grey[90]),
             ),
           ),
         ],
@@ -93,25 +107,36 @@ class _BookingHistoryState extends State<BookingHistory> {
 }
 
 class ListTileWidget extends StatelessWidget {
-  const ListTileWidget({
-    super.key,
-  });
+  final String img;
+  final String title;
+
+  final String subtitle;
+
+  const ListTileWidget(
+      {super.key,
+      required this.img,
+      required this.title,
+      required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
         leading: Container(
+          width: 50,
+          height: 50,
           child: Image.asset(
-            "lib/images/img2.jfif",
+            img,
+            // height: 50,
+            // width: 60,
           ),
         ),
         title: Text(
-          "Ambrosia Hotel & Restaurant",
+          title,
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         subtitle: Row(children: [
           Icon(Icons.pin_drop_outlined),
-          Text("kazi Deiry, Taiger Pass\n Chittagong"),
+          Text(subtitle),
           SizedBox(
             width: 10,
           )
