@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:task1/NoteApp/HiveNotes.dart';
+
+import 'HiveNotes.dart';
 
 class NoteApp extends StatefulWidget {
   const NoteApp({super.key});
@@ -11,10 +12,10 @@ class NoteApp extends StatefulWidget {
 
 class _NoteAppState extends State<NoteApp> {
   final _textController = TextEditingController();
-  List<String> Notes = [];
+
   @override
   void initState() {
-    // HiveHelper.GetNotes();
+    HiveHelper.GetNotes();
     // print(HiveHelper.box2[0].toString() + "box22222222222222222222222222");
     setState(() {});
     super.initState();
@@ -36,19 +37,19 @@ class _NoteAppState extends State<NoteApp> {
           ),
           InkWell(
               onTap: () {
-                Notes = [];
+                HiveHelper.removeAll();
                 setState(() {});
               },
               child: Icon(CupertinoIcons.delete))
         ],
       ),
       body: ListView.builder(
-        itemCount: Notes.length,
+        itemCount: HiveHelper.Notes.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(10.0),
           child: InkWell(
             onTap: () {
-              _textController.text = Notes[index];
+              _textController.text = HiveHelper.Notes[index];
               showDialog(
                   context: context,
                   builder: (context) {
@@ -56,10 +57,13 @@ class _NoteAppState extends State<NoteApp> {
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).pop();
-                            Notes[index] = _textController.text;
-                            _textController.text = "";
-                            setState(() {});
+                            if (_textController.text.isNotEmpty) {
+                              Navigator.of(context).pop();
+                              HiveHelper.updateNotes(
+                                  index, _textController.text);
+                              _textController.text = "";
+                              setState(() {});
+                            }
                           },
                           child: Text(
                             "Ok",
@@ -93,7 +97,7 @@ class _NoteAppState extends State<NoteApp> {
                     right: 10.0, left: 300, top: 10, bottom: 10),
                 child: InkWell(
                   onTap: () {
-                    Notes.removeAt(index);
+                    HiveHelper.removeItem(index);
                     setState(() {});
                   },
                   child: Icon(
@@ -117,7 +121,7 @@ class _NoteAppState extends State<NoteApp> {
                     FloatingActionButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Notes.add(_textController.text);
+                        HiveHelper.addNote(_textController.text);
                         _textController.text = "";
                         setState(() {});
                       },
