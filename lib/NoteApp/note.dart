@@ -14,7 +14,9 @@ class _NoteAppState extends State<NoteApp> {
   List<String> Notes = [];
   @override
   void initState() {
-    HiveHelper.GetNotes();
+    // HiveHelper.GetNotes();
+    // print(HiveHelper.box2[0].toString() + "box22222222222222222222222222");
+    setState(() {});
     super.initState();
   }
 
@@ -78,7 +80,7 @@ class _NoteAppState extends State<NoteApp> {
               Container(
                 width: double.infinity,
                 height: 60,
-                child: Center(child: Text(Notes[index])),
+                child: Center(child: Text(HiveHelper.Notes[index])),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: index % 2 == 0
@@ -115,7 +117,7 @@ class _NoteAppState extends State<NoteApp> {
                     FloatingActionButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        HiveHelper.addNote(_textController.text);
+                        Notes.add(_textController.text);
                         _textController.text = "";
                         setState(() {});
                       },
