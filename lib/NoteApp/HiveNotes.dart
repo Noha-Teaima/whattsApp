@@ -13,9 +13,10 @@ class HiveHelper {
     // print(box.values.toString() + "    ollllllllllllll");
   }
 
-  static void GetNotes() async {
+  static Future<void> GetNotes() async {
     if (box.isNotEmpty) {
-      Notes = box.get("message");
+      await Future.delayed(Duration(seconds: 3))
+          .then((value) => Notes = box.get("message"));
     }
   }
 

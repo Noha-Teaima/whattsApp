@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:task1/ecomerce/signUp/cubit/cubit/sign_up_cubit.dart';
 import 'package:task1/ecomerce/widget/customTextField.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../NoteApp/cube/cubit/note_cubit.dart';
 
 class AnotherSignUp extends StatefulWidget {
   const AnotherSignUp({super.key});
@@ -17,6 +20,7 @@ class _AnotherSignUpState extends State<AnotherSignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<SignUpCubit>();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 19, 84, 174),
       body: Column(
@@ -93,17 +97,34 @@ class _AnotherSignUpState extends State<AnotherSignUp> {
                             name: "PASSWORD",
                             isPassword: true,
                           ),
-                          Container(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {}
-                              },
-                              child: Text("Get Started"),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
-                              ),
-                            ),
+                          BlocBuilder<SignUpCubit, SignUpState>(
+                            builder: (context, state) {
+                              if (state is SignUpLoading) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return Container(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    cubit.SignUpData(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        name: _nameController.text,
+                                        phone: "2155331");
+
+                                    // if (_formKey.currentState!.validate()) {
+
+                                    // }
+                                  },
+                                  child: Text("Get Started"),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           Row(
                             children: [

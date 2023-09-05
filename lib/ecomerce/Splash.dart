@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:task1/ecomerce/AnotherSignUp.dart';
+import 'package:task1/ecomerce/signUp/AnotherSignUp.dart';
 
 import 'package:task1/ecomerce/onboardingScreen.dart';
 
@@ -28,7 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
               context,
               MaterialPageRoute(builder: (context) => Carsoule()),
               (Route<dynamic> route) => false,
-            ));
+            )
+            );
     super.initState();
   }
 
